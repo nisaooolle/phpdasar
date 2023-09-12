@@ -17,7 +17,7 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
 </head>
 
 <body class="min-vh-100 d-flex align-items-center">
-    <div class="card w-50 m-auto p-3">
+    <div class="card w-75 m-auto p-3">
         <h3 class="text-center">Siswa</h3>
         <table class="table table-striped">
             <thead>
@@ -28,6 +28,7 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
                     <th>Gender</th>
                     <th>Kelas</th>
                     <th>Nama Sekolah</th>
+                    <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -46,13 +47,18 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
                         <td><?= $row['gender']; ?></td>
                         <td><?= $row['tingkat_kelas']; ?></td>
                         <td><?= $row['nama_sekolah']; ?></td>
+                        <td class="text-center">
+                            <a href="<?='detail.php?id='.$row['id_siswa'];?>" class="btn btn-primary">Detail</a>
+                            <button onClick="<?= 'hapus('.$row['id_siswa'].')'; ?>" class="btn btn-danger">Delete</button>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <div class="text-end mt-4">
+        <a href="create.php" class="btn btn-sm btn-primary">Tambah</a>
+        <!-- <div class="text-end mt-4">
             <button onclick="logout()" class="text-end p-2 btn btn-danger">Logout</button>
-        </div>
+        </div> -->
     </div>
     <script>
         function hapus(id) {
